@@ -31,3 +31,11 @@ union Person
 	struct Teacher;
 }
 
+struct Group
+{
+	union[40] Person Studs;
+	union Person Curator;
+	unsigned short size;
+	char[6] Name;
+}
+
