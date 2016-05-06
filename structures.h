@@ -27,8 +27,8 @@ struct Student
 
 union Person
 {
-	struct Student;
-	struct Teacher;
+	struct Student S;
+	struct Teacher T;
 }
 
 struct Group
