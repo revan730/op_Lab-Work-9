@@ -5,8 +5,11 @@
 
 int writeToFile();
 int readFromFile();
+void inputStudents(Group *g);
+void inputCurator(Group *g);
 
-struct Group[gsize] groups;
+
+struct Group groups[gsize];
 
 int main()
 {
@@ -16,7 +19,7 @@ int main()
 int writeToFile()
 {
 	FILE *f;
- 	f = fopen("groups.bin","wb");
+	f = fopen("groups.bin","wb");
 	if  (fwrite(groups,sizeof(Group),sizeof(groups),f) == gsize)
 	{
 		fclose(f);
@@ -44,25 +47,25 @@ void inputGroup(int n)//Input information about n-th group
 	printf("Input number of students\n");
 	scanf("%d",&groups[n].size);
 	inputStudents(&groups[n]);
-	inputCurator(&groups[n];)
+	inputCurator(&groups[n]);
 }
 
 void inputStudents(Group *g)
 {
-    for (int i = 0;i < g.size;i++)
+    for (int i = 0;i < g->size;i++)
 	{
-		char[20] name;
+		char name[20];
 		float m;
 		int f;
 		printf("Input %d-nt's student name\n",i + 1);
 		gets(name);
-		strcpy(g.Studs[i].S.Name,name);
+		strcpy(g->Studs[i].S.Fio.Name,name);
 		printf("Input surname\n");
 		gets(name);
-		strcpy(g.Studs[i].S.Surname,name);
+		strcpy(g->Studs[i].S.Fio.Surname,name);
 		printf("Input middle name\n");
 		gets(name);
-		strcpy(g.Studs[i].S.Middlename,name);
+		strcpy(g->Studs[i].S.Fio.Middlename,name);
 		printf("Input average mark\n");
 		scanf("%f",&m);
 		printf("0 - budget form (default),1 - contract form");
@@ -70,13 +73,13 @@ void inputStudents(Group *g)
 		switch (f)
 		{
         case 0:
-            g.Studs[i].S.F = BUDGET;
+            g->Studs[i].S.F = BUDGET;
             break;
         case 1:
-            g.Studs[i].S.F = CONTRACT;
+            g->Studs[i].S.F = CONTRACT;
             break;
         default:
-            g.Studs[i].S.F = BUDGET;
+            g->Studs[i].S.F = BUDGET;
             break;
 		}
 	}
@@ -84,18 +87,18 @@ void inputStudents(Group *g)
 
 void inputCurator(Group *g)
 {
-    char[20] name;
-    printf("Input curator's name\n");
+	char name[20];
+	printf("Input curator's name\n");
+	gets(name);
+	strcpy(g->Curator.T.Fio.Name,name);
+	printf("Input surname\n");
     gets(name);
-    strcpy(g.Curator.T.Name,name);
-    printf("Input surname\n");
-    gets(name);
-    strcpy(g.Curator.T.Surname,name);
+    strcpy(g->Curator.T.Fio.Surname,name);
     printf("Input middle name\n");
     gets(name);
-    strcpy(g.Curator.T.Middlename,name);
+    strcpy(g->Curator.T.Fio.Middlename,name);
     printf("Input curator's position");
     gets(name);
-    strcpy(g.Curator.T.Position,name);
+    strcpy(g->Curator.T.Position,name);
     //TODO Birthday input
 }

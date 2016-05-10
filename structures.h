@@ -4,10 +4,10 @@ enum Form {BUDGET,CONTRACT};
 
 struct FullName
 {
-	char[20] Surname;
-	char[20] Name;
-	char[20] Middlename;
-}
+	char Surname[20];
+	char Name[20];
+	char Middlename[20];
+};
 
 struct Teacher
 {
@@ -15,27 +15,27 @@ struct Teacher
 	Month Mon;
 	unsigned short Day;
 	unsigned short Year;
-	char[20] Position;
-}
+	char Position[20];
+};
 
 struct Student
 {
 	struct FullName	Fio;
 	unsigned short Average;
 	Form F;
-}
+};
 
 union Person
 {
 	struct Student S;
 	struct Teacher T;
-}
+};
 
 struct Group
 {
-	union[40] Person Studs;
+	union Person Studs[40];
 	union Person Curator;
 	unsigned short size;
-	char[6] Name;
-}
+	char Name[6];
+};
 
