@@ -59,6 +59,34 @@ void mainMenu()
     }
 }
 
+void appendGroup() {
+	FILE *f;
+	f = fopen("groups.bin","r+b");
+	int gQuan;
+	fread(&gQuan, sizeof(int), 1, f);
+	gQuan++;
+	fseek(f, 0, SEEK_SET);
+	fwrite(&gQuan, sizeof(int), 1, f);
+
+	Group g;
+
+    char name[7];
+    printf("Input group name:\n");
+	gets(name);
+	strcpy(g.Name,name);
+	strncpy(g.Flow,g.Name,2);
+	printf("Input number of students\n");
+	//scanf("%d",&groups[n].size);
+	std::cin >> g.size;
+	inputStudents(&g);
+	inputCurator(&g);
+
+	fseek(f, 0, SEEK_END);
+	fwrite(&g, sizeof(Group), 1, f);
+
+	fclose(f);
+}
+
 int writeToFile(int n)
 {
 	FILE *f;
@@ -117,7 +145,7 @@ void inputStudents(Group *g)//Input students of specific group
 {
     for (int i = 0;i < g->size;i++)
 	{
-	    inputStudent(&g->Studs[i].S);
+	   inputStudent(&g->Studs[i].S);
 
 	}
 }
@@ -197,13 +225,4 @@ void tasksMenu(int n)
             printTeachersToLeave(groups,n);
         }
     }
-}
-void appendGroup()
-{
-    /*Group g;
-    FILE *f;
-    f = fopen("groups.bin","ab");
-    fseek()
-    fwrite(groups,sizeof(Group),sizeof(groups),f)
-    */
 }
