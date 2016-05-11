@@ -5,6 +5,7 @@
 #define gsize 4
 #include "first.h"
 #include "second.h"
+#include "third.h"
 
 int writeToFile(int);
 int readFromFile(int);
@@ -75,6 +76,8 @@ void appendGroup() {
 	gets(name);
 	strcpy(g.Name,name);
 	strncpy(g.Flow,g.Name,2);
+    char c = g.Name[3];
+	g.Course = 6 - atoi(&c);
 	printf("Input number of students\n");
 	//scanf("%d",&groups[n].size);
 	std::cin >> g.size;
@@ -134,6 +137,8 @@ void inputGroup(int n)//Input information about n-th group
 	gets(name);
 	strcpy(groups[n].Name,name);
 	strncpy(groups[n].Flow,groups[n].Name,2);
+    char c = groups[n].Name[3];
+	groups[n].Course = 6 - atoi(&c);
 	printf("Input number of students\n");
 	//scanf("%d",&groups[n].size);
 	std::cin >> groups[n].size;
@@ -167,26 +172,27 @@ void inputStudent(Student *stud)//Input specific student's info
     strcpy(stud->Fio.Middlename,name);
     printf("Input average mark\n");
     scanf("%f",&stud->Average);
-    printf("0 - budget form (default),1 - contract form\n");
+    printf("0 - daily form (default),1 - absentia form\n");
     //scanf("%d",&f);
     std::cin >> f;
     switch (f)
     {
         case 0:
-            stud->F = BUDGET;
+            stud->F = DAY;
             break;
         case 1:
-            stud->F = CONTRACT;
+            stud->F = ZAO;
             break;
         default:
-            stud->F = BUDGET;
+            stud->F = DAY;
             break;
     }
 }
 
 void inputCurator(Group *g)
 {
-	char name[20];
+    char name[20];
+	int p;
 	printf("Input curator's name\n");
 	getchar();
 	gets(name);
@@ -197,11 +203,29 @@ void inputCurator(Group *g)
     printf("Input middle name\n");
     gets(name);
     strcpy(g->Curator.T.Fio.Middlename,name);
-    printf("Input curator's position\n");
-    gets(name);
-    strcpy(g->Curator.T.Position,name);
+    printf("Select position:0 - docent,1 - assistant,2 - professor\n");
+    scanf("%d",&p);
+    getchar();
+        switch (p)
+    {
+        case 0:
+            g->Curator.T.Position = DOC;
+            break;
+        case 1:
+            g->Curator.T.Position = AST;
+            break;
+        case 2:
+            g->Curator.T.Position = PROF;
+            break;
+        default:
+            g->Curator.T.Position = DOC;
+            break;
+
+    }
     printf("Input date of birth (DD MM YYYY)\n");
-    scanf("%2d %2d %4d",&g->Curator.T.Day,&g->Curator.T.Mon,&g->Curator.T.Year);
+    scanf("%d %d %4d",&g->Curator.T.Day,&g->Curator.T.Mon,&g->Curator.T.Year);
+
+    getchar();
 }
 
 void editStudent(Group *g,int n)
@@ -214,7 +238,7 @@ void tasksMenu(int n)
     while (true)
     {
         int c;
-        printf("1.Find student's with lowest mark\n2.Fedya\n");
+        printf("1.Find student's with lowest mark\n2.Old teachers\n3.Recommended for magistry\n");
         scanf("%d",&c);
         switch (c)
         {
@@ -223,6 +247,10 @@ void tasksMenu(int n)
             break;
         case 2:
             printTeachersToLeave(groups,n);
+            break;
+        case 3:
+            findRecommended(groups,n);
+            break;
         }
     }
 }
