@@ -1,1 +1,1 @@
-void printTeacherInfochersToLeave(Group * groups, int gQuan);
+void printTeachersToLeave(Group * groups, int gQuan);

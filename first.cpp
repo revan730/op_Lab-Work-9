@@ -11,6 +11,6 @@ void findLowest(Group* g,int n)
             if (g[i].Studs[j].S.Average < min->Average)
                 min = &g[i].Studs[j].S;
         }
-        printf("Student with min mark - %s %s\nMark - %f\nGroup %s\nCurator - %s %s",min->Fio.Name,min->Fio.Surname,min->Average,g[i].Name,g[i].Curator.T.Fio.Name,g[i].Curator.T.Fio.Surname);
+        printf("Student with min mark - %s %s\nMark - %f\nGroup %s\nCurator - %s %s\n",min->Fio.Name,min->Fio.Surname,min->Average,g[i].Name,g[i].Curator.T.Fio.Name,g[i].Curator.T.Fio.Surname);
     }
 }

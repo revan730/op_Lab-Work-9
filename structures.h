@@ -4,6 +4,7 @@
 
 enum Month {JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,NOV,OCT,DEC};
 enum Form {BUDGET,CONTRACT};
+enum Pos {DOC,AST,PROF};
 
 struct FullName
 {
@@ -18,7 +19,7 @@ struct Teacher
 	unsigned short Mon;
 	unsigned short Day;
 	unsigned short Year;
-	char Position[20];
+	Pos Position;
 };
 
 struct Student

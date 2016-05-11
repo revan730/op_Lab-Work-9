@@ -16,9 +16,10 @@ void printTeachersToLeave(Group * groups, int gQuan) {
 		teachers[i] = nullptr;
 	int howMuchTeachers = 0;
 	for (int i = 0; i < gQuan; i++) {
-		if (strcmp(groups[i].Curator.T.Position, "доцент") == 0 && (2016 - groups[i].Curator.T.Year) > 60 ) {
+		if (groups[i].Curator.T.Position == DOC && (2016 - groups[i].Curator.T.Year) > 60)
+            {
 			teachers[howMuchTeachers] = &groups[i].Curator.T;
-			teachers++;
+			howMuchTeachers++;
 		}
 	}
 
@@ -42,6 +43,6 @@ void printTeachersToLeave(Group * groups, int gQuan) {
 }
 
 void printTeacherInfo(Teacher * t) {
-	printf("%s %s %s (%d %d %d)\n", t->Fio.Surname, t->Fio.Name, t->Fio.Middlename, t->Year, t->Mon, t->Day);
+	printf("%s %s %s \n", t->Fio.Surname, t->Fio.Name, t->Fio.Middlename);
 }
 
