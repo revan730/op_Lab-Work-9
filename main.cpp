@@ -48,7 +48,6 @@ void mainMenu()
             break;
         case 3:
             return;
-            break;
         default:
             printf("Input error\n");
             break;
