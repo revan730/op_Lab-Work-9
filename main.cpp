@@ -4,6 +4,7 @@
 #include <string.h>
 #define gsize 4
 #include "first.h"
+#include "second.h"
 
 int writeToFile(int);
 int readFromFile(int);
@@ -16,6 +17,9 @@ void tasksMenu(int);
 void createFile();
 void appendGroup();
 void findLowest(Group*, int);
+void findRecommended(Group *g,int n);
+int writeToFile(Student *S);
+void printTeachersToLeave(Group * groups, int gQuan);
 
 //struct Group groups[gsize];
 struct Group *groups;
@@ -182,12 +186,15 @@ void tasksMenu(int n)
     while (true)
     {
         int c;
-        printf("1.Find student's with lowest mark\n");
+        printf("1.Find student's with lowest mark\n2.Fedya\n");
         scanf("%d",&c);
         switch (c)
         {
         case 1:
             findLowest(groups,n);
+            break;
+        case 2:
+            printTeachersToLeave(groups,n);
         }
     }
 }
