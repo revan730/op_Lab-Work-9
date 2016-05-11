@@ -1,3 +1,6 @@
+#ifndef STRUCT_H
+#define STRUCT_H
+
 
 enum Month {JAN,FEB,MAR,APR,MAY,JUN,JUL,AUG,SEP,NOV,OCT,DEC};
 enum Form {BUDGET,CONTRACT};
@@ -12,7 +15,7 @@ struct FullName
 struct Teacher
 {
 	struct FullName Fio;
-	Month Mon;
+	unsigned short Mon;
 	unsigned short Day;
 	unsigned short Year;
 	char Position[20];
@@ -21,7 +24,7 @@ struct Teacher
 struct Student
 {
 	struct FullName	Fio;
-	unsigned short Average;
+	float Average;
 	Form F;
 };
 
@@ -37,5 +40,8 @@ struct Group
 	union Person Curator;
 	unsigned short size;
 	char Name[6];
+	char Flow[3];
+	unsigned short Course;
 };
 
+#endif // STRUCT_H
