@@ -84,7 +84,7 @@ void appendGroup() {
 	inputStudents(&g);
 	inputCurator(&g);
 
-	fseek(f, 0, SEEK_END);
+	fseek(f, sizeof(Group)*(gQuan - 1), SEEK_CUR);
 	fwrite(&g, sizeof(Group), 1, f);
 
 	fclose(f);
