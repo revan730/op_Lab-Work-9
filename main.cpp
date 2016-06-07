@@ -2,7 +2,7 @@
 #include <iostream>
 #include "structures.h"
 #include <string.h>
-#define gsize 4
+#define gsize 5
 #include "first.h"
 #include "second.h"
 #include "third.h"
